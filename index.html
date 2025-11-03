@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Saturn X</title>
+    
+<!-- New image URL for the favicon (page icon) -->
+<link rel="icon" href="https://cdn.discordapp.com/attachments/1426143323437010984/1435039094202826852/ABS2GSkH3GQ-B7_MsOJ6OXpqyaDz0oOnCBcz5em8oicMwQlMudpskgI-hyATQBMPZ8mOk-UhC_jBjqtdue5fZCiETGHH4xJG5QrlJ-A4igWg4SXBSmALn5u8ZtC3TxYT0dySJ6WR3NgTBKMuLpi2ERWQpJeXE7iHRslG8fv30gTNNHygXuqEHgs1024-rj.png?ex=690a83cd&is=6909324d&hm=e5d6b515971ed26a32a705dd4e5ec24c4fafbc88c7b62b9c2bf34c6ecffd9b14&" type="image/png">
+    <style>
+        /* General Styles */
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: white;
+            background: linear-gradient(135deg, #000000, #101010, #30303030);
+            background-attachment: fixed;
+            text-align: center;
+            overflow-x: hidden;
+        }
+
+        /* Header Section */
+        header {
+            padding: 80px 20px 40px;
+        }
+
+        /* Styling for the main image (now a 200x200 circular icon) */
+        header img {
+            width: 100%;
+            max-width: 200px; /* Limits size to approximately 200px */
+            aspect-ratio: 1 / 1; /* Ensures it's a square container for the circle */
+            border-radius: 50%; /* Makes it circular */
+            box-shadow: 0 0 40px #ffffff90, 0 0 10px #ffffff;
+            margin-bottom: 30px;
+            animation: float 5s ease-in-out infinite; /* Reinstating the float animation */
+        }
+        
+        /* Reinstating the keyframes for the float animation */
+        @keyframes float {
+            0%, 100% { transform: translateY(0) scale(1); }
+            50% { transform: translateY(-15px) scale(1.02); }
+        }
+
+
+        h1 {
+            font-size: 3.5em;
+            background: linear-gradient(90deg, #ffffff, #bbbbbb);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin: 30px 0 10px;
+            text-shadow: 0 0 10px #ffffff40;
+        }
+
+        p.tagline {
+            font-size: 1.3em;
+            color: #eeeeee;
+            max-width: 800px;
+            margin: 0 auto 50px;
+            line-height: 1.6em;
+            font-style: italic;
+        }
+
+        /* Buttons */
+        .btn-container {
+            margin-bottom: 60px;
+        }
+
+        .btn {
+            display: inline-block;
+            background: #ffffff15;
+            border: 2px solid #ffffff60;
+            border-radius: 50px;
+            padding: 15px 35px;
+            color: white;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-decoration: none;
+            margin: 10px;
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            text-transform: uppercase;
+            cursor: pointer; /* Ensures mouse pointer looks clickable */
+        }
+
+        .btn:hover {
+            background: #ffffff;
+            color: #000000;
+            border-color: #ffffff;
+            box-shadow: 0 5px 25px #ffffff80;
+            transform: translateY(-2px);
+        }
+
+        /* Features Section */
+        .features-section {
+            padding: 40px 20px;
+            background: #0a0a0a;
+            border-top: 1px solid #ffffff10;
+        }
+
+        .features-section h2 {
+            font-size: 2.5em;
+            color: #ffffff;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+        }
+
+        .features-list {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            max-width: 1000px;
+            margin: 0 auto;
+            list-style: none;
+            padding: 0;
+        }
+
+        .feature-item {
+            width: 280px;
+            margin: 20px;
+            padding: 20px;
+            background: #ffffff05;
+            border-radius: 15px;
+            border: 1px solid #ffffff10;
+            text-align: left;
+            transition: transform 0.3s;
+        }
+
+        .feature-item:hover {
+            transform: translateY(-5px);
+            background: #ffffff0a;
+        }
+
+        .feature-item h3 {
+            color: #ffffff;
+            font-size: 1.5em;
+            margin-top: 0;
+            border-bottom: 2px solid #ffffff30;
+            padding-bottom: 10px;
+            margin-bottom: 10px;
+        }
+
+        .feature-item p {
+            color: #cccccc;
+            margin: 0;
+            font-size: 1.05em;
+        }
+
+
+        /* Footer */
+        footer {
+            margin-top: 60px;
+            padding: 40px;
+            background: #000000;
+            box-shadow: 0 -5px 20px #ffffff20;
+        }
+
+        footer h2 {
+            margin-bottom: 20px;
+            color: #ffffff;
+            font-size: 2em;
+        }
+
+        footer p {
+            margin: 8px 0;
+            color: #bbbbbb;
+            font-size: 1.1em;
+        }
+
+        /* Notification Styling */
+        #notification {
+            visibility: hidden;
+            min-width: 250px;
+            background-color: #000000;
+            color: #00ff00;
+            text-align: center;
+            border-radius: 8px;
+            padding: 16px;
+            position: fixed;
+            z-index: 1000;
+            left: 50%;
+            bottom: 30px;
+            transform: translateX(-50%);
+            box-shadow: 0 0 20px #00ff0040;
+            opacity: 0;
+            transition: opacity 0.5s, visibility 0.5s;
+        }
+
+        #notification.show {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            h1 { font-size: 2.8em; }
+            header img { max-width: 180px; } /* Smaller on mobile */
+            p.tagline { font-size: 1.1em; }
+            .feature-item { width: 90%; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        
+<!-- The main image (200x200 circular icon) -->
+<img src="https://cdn.discordapp.com/attachments/1426143323437010984/1435039430447595660/ABS2GSn4LeExDW5g4kXUwC6E0dGxlsxL9rOzQAdPCQpGRfYKPCmRwPLvGTCm4WLHIVtZO84dhqhKnxDUH9LQ6U_VuxCifwArTc6yShX3hFmm0_imvMM1CQzotShHCu-_4vHEWOpAVxUlkkqYY8Rxui-u9zAGUPaXwhB6QJKmzAY17VikyQ_LMws1024-rj.png?ex=690a841d&is=6909329d&hm=1c4a9d0f80fbcdb778eceaad1d4da19fe39b2b41a6df2e7a826bcc8b6987262c&" alt="Saturn X Banner">
+        <h1>Saturn X</h1>
+        <p class="tagline">The ultimate script for an enhanced experience, brought to you by <strong>Xyclol</strong>.</p>
+
+        <div class="btn-container">
+            <!-- UPDATED: Removed href and added onclick for copy functionality -->
+            <a href="#" class="btn" onclick="copyScript(event)">💾 Get Script</a>
+            <a href="https://discord.gg/JYPztRQFeC" class="btn" target="_blank">💬 Join Discord</a>
+        </div>
+    </header>
+
+    <div class="features-section">
+        <h2>Key Features</h2>
+        <ul class="features-list">
+            <li class="feature-item">
+                <h3>Ghostly Reanimations</h3>
+                <p>Advanced and smooth Reanimation scripts to add a unique visual flair to your game.</p>
+            </li>
+            <li class="feature-item">
+                <h3>Trolling Utilities</h3>
+                <p>A diverse set of trolling tools for harmless fun and interaction within your session.</p>
+            </li>
+            <li class="feature-item">
+                <h3>Seamless Performance</h3>
+                <p>Engineered for high performance and minimal lag, ensuring a smooth experience.</p>
+            </li>
+        </ul>
+    </div>
+
+    <footer>
+        <h2>Project Credits</h2>
+        <p><strong>Xyclol</strong> — Lead Script Developer & Project Owner</p>
+        <p><strong>Poog</strong> — Website Designer & Deployment Specialist</p>
+    </footer>
+
+    <!-- Notification element for user feedback -->
+    <div id="notification">Script copied successfully!</div>
+
+    <script>
+        // The Lua script code to be copied to the clipboard
+        const SCRIPT_CODE = `-- i love overtonight\nloadstring(game:HttpGet("https://pastebin.com/Cz3xbk8h"))()`;
+
+        /**
+         * Copies the script code to the clipboard and shows a notification.
+         * @param {Event} event - The click event from the button.
+         */
+        function copyScript(event) {
+            // Prevent the default link behavior (like navigating to #)
+            event.preventDefault(); 
+            
+            // 1. Create a temporary textarea element
+            const tempTextArea = document.createElement('textarea');
+            tempTextArea.value = SCRIPT_CODE;
+            
+            // 2. Make it invisible and append it to the body
+            tempTextArea.style.position = 'fixed';
+            tempTextArea.style.opacity = '0';
+            document.body.appendChild(tempTextArea);
+            
+            // 3. Select the content and execute the copy command
+            tempTextArea.select();
+            
+            try {
+                // document.execCommand('copy') is the reliable method in this sandboxed environment
+                document.execCommand('copy');
+                showNotification(); // Show success feedback
+            } catch (err) {
+                console.error('Could not copy text: ', err);
+                // Fallback or error message could be added here
+            } finally {
+                // 4. Remove the temporary textarea
+                document.body.removeChild(tempTextArea);
+            }
+        }
+
+        /**
+         * Shows a temporary notification at the bottom of the screen.
+         */
+        function showNotification() {
+            const notification = document.getElementById('notification');
+            
+            // Add the 'show' class to fade it in
+            notification.classList.add('show');
+            
+            // Remove the 'show' class after 3 seconds to fade it out
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 3000);
+        }
+
+    </script>
+</body>
+</html>
